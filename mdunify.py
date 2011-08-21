@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2.7
 #
 # Simple script to produce a single unified beautiful HTML file from a
 # Markdown file
