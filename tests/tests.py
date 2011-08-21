@@ -2,10 +2,10 @@ import sys
 import unittest
 
 try:
-    import markbit
+    import mdunify
 except:
     sys.path.append(".")
-    import markbit
+    import mdunify
 from BeautifulSoup import BeautifulSoup as bsoup
 
 class TestSequenceFunctions(unittest.TestCase):
@@ -18,18 +18,18 @@ AAAddEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIFRoZSBHSU1Q72QlbgAAAF1JREFUGNO9zL0NglAAxPEf
     def test_tag_parse(self):
         tag = """<img src="tests/img.png" />"""
         expected = """<img src="data:image/png;base64,%s" />""" % (self.encoded_image)
-        self.assertEquals(expected, unicode(markbit.convert_imgtag_to_base64(tag)).replace('\n',''))
+        self.assertEquals(expected, unicode(mdunify.convert_imgtag_to_base64(tag)).replace('\n',''))
 
     def test_parse_html_document(self):
         as_html = """<html><body><div><img src="tests/img.png"/></div></body></html>"""
         expected = """<html><body><div><img src="data:image/png;base64,%s" /></div></body></html>""" % (self.encoded_image)
 
-        self.assertEquals(expected, unicode(markbit.convert_html_to_inline(as_html)).replace('\n',''))
+        self.assertEquals(expected, unicode(mdunify.convert_html_to_inline(as_html)).replace('\n',''))
         
 
 
     def test_img_fetch(self):
-        mime_type, content = markbit.get_image("tests/img.png")
+        mime_type, content = mdunify.get_image("tests/img.png")
 
         self.assertEquals("image/png", mime_type)
         self.assertEquals(self.encoded_image, content.replace('\n', ''))
